@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sripadh Sujith | AI/ML Hobbyist Portfolio</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- AOS for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #f9fafb;
+            overflow-x: hidden;
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .glass:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 3D Button Style */
+        .btn-3d {
+            position: relative;
+            transition: all 0.2s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 6px 0 #1e40af;
+        }
+
+        .btn-3d:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #1e40af;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .project-card {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 420px;
+        }
+
+        /* Animation for icons */
+        .icon-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .celestia-gradient {
+            background: radial-gradient(circle at center, rgba(88, 28, 135, 0.15) 0%, transparent 70%);
+        }
+
+        .cosmic-rotate {
+            animation: spin 60s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="custom-scrollbar">
+
+    <!-- 3D Background Container -->
+    <div id="canvas-container"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass bg-opacity-20 border-none shadow-2xl">
+        <div class="text-xl font-bold tracking-tighter">Sripadh Sujith</div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+            <a href="#home" class="hover:text-blue-400 transition-colors">Home</a>
+            <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
+            <a href="#celestia-spotlight" class="hover:text-blue-400 transition-colors">Celestia</a>
+            <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
+            <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
+        </div>
+        <a href="https://github.com/Sripadh-Sujith" target="_blank" class="bg-blue-600 btn-3d text-white px-6 py-2 rounded-full text-sm font-bold flex items-center gap-2">
+            <i data-lucide="github" class="w-4 h-4"></i> GitHub
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex flex-col justify-center items-center px-6 text-center">
+        <div class="hero-glow"></div>
+        <h2 data-aos="fade-down" class="text-blue-400 font-mono mb-4 text-lg tracking-widest uppercase">Hi, I'm Sripadh Sujith</h2>
+        <h1 data-aos="zoom-out" data-aos-delay="100" class="text-6xl md:text-9xl font-extrabold mb-6 leading-tight tracking-tight">
+            Architecting <br> <span class="gradient-text">Intelligence.</span>
+        </h1>
+        <p data-aos="fade-up" data-aos-delay="200" class="max-w-2xl text-gray-400 text-lg md:text-xl mb-10 font-light">
+            Python Expert & AIML hobbyist crafting neural solutions for the next generation of computing.
+        </p>
+        <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row gap-6">
+            <a href="#celestia-spotlight" class="px-10 py-4 bg-white text-black font-bold rounded-xl btn-3d shadow-none" style="box-shadow: 0 6px 0 #94a3b8;">Spotlight: Celestia</a>
+            <a href="#projects" class="px-10 py-4 glass rounded-xl font-bold hover:bg-white/10 transition-all">All Projects</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-right">
+                <h3 class="text-4xl font-bold mb-6">Expertise in <span class="text-blue-500">Python & AI</span></h3>
+                <p class="text-gray-400 mb-8 text-lg leading-relaxed">
+                    I build robust systems using modern Python frameworks. My focus lies in Deep Learning, Computer Vision, and Generative AI to solve real-world problems.
+                </p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="flex items-center space-x-3 text-gray-300">
+                        <div class="p-2 bg-blue-500/10 rounded-lg"><i data-lucide="brain" class="text-blue-500 w-5 h-5"></i></div>
+                        <span>Neural Networks</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-gray-300">
+                        <div class="p-2 bg-purple-500/10 rounded-lg"><i data-lucide="camera" class="text-purple-500 w-5 h-5"></i></div>
+                        <span>OpenCV Vision</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-gray-300">
+                        <div class="p-2 bg-pink-500/10 rounded-lg"><i data-lucide="mic" class="text-pink-500 w-5 h-5"></i></div>
+                        <span>Speech Synthesis</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-gray-300">
+                        <div class="p-2 bg-green-500/10 rounded-lg"><i data-lucide="code-2" class="text-green-500 w-5 h-5"></i></div>
+                        <span>Streamlit Apps</span>
+                    </div>
+                </div>
+            </div>
+            <div data-aos="fade-left" class="grid grid-cols-2 gap-6">
+                <div class="glass p-10 rounded-3xl text-center border-blue-500/20">
+                    <div class="text-5xl font-extrabold text-blue-500 mb-2">3+</div>
+                    <div class="text-xs uppercase tracking-widest text-gray-500 font-bold">Years Coding</div>
+                </div>
+                <div class="glass p-10 rounded-3xl text-center mt-12 border-purple-500/20">
+                    <div class="text-5xl font-extrabold text-purple-500 mb-2">100%</div>
+                    <div class="text-xs uppercase tracking-widest text-gray-500 font-bold">Open Source</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPECIALIZED SECTION: Celestia Spotlight -->
+    <section id="celestia-spotlight" class="py-32 px-6 relative">
+        <div class="celestia-gradient absolute inset-0 -z-10"></div>
+        <div class="max-w-7xl mx-auto">
+            <div class="glass p-12 md:p-20 rounded-[3rem] border-purple-500/30 overflow-hidden relative">
+                <!-- Decorative Orbit -->
+                <div class="absolute -right-20 -top-20 w-96 h-96 border border-purple-500/10 rounded-full cosmic-rotate"></div>
+                <div class="absolute -right-40 -top-40 w-[30rem] h-[30rem] border border-blue-500/5 rounded-full cosmic-rotate" style="animation-direction: reverse;"></div>
+
+                <div class="grid lg:grid-cols-2 gap-16 items-center relative z-10">
+                    <div data-aos="fade-right">
+                        <div class="flex items-center gap-4 mb-6">
+                            <span class="bg-purple-500/20 text-purple-400 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-tighter">Flagship Project</span>
+                            <div class="h-px w-12 bg-purple-500/30"></div>
+                        </div>
+                        <h2 class="text-5xl md:text-7xl font-black mb-8 leading-none">Celestia <br><span class="text-purple-400 text-4xl md:text-5xl">Horoscope Expert</span></h2>
+                        <p class="text-gray-300 text-xl mb-10 leading-relaxed font-light">
+                            Beyond standard astrology—Celestia utilizes advanced Large Language Models to interpret cosmic data. It provides nuanced, context-aware horoscope readings through a sophisticated conversational engine.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-6">
+                            <button onclick="window.open('https://huggingface.co/spaces/Sripadh2009/Celestia/', '_blank')" class="bg-purple-600 btn-3d px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-3">
+                                <i data-lucide="external-link" class="w-5 h-5"></i> View Source
+                            </button>
+                            <div class="flex items-center gap-4 px-4">
+                                <span class="text-sm font-mono text-purple-300/60">Status: v2.4 Live</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative flex justify-center items-center" data-aos="zoom-in">
+                        <div class="w-72 h-72 md:w-96 md:h-96 glass rounded-full flex items-center justify-center border-purple-500/40 shadow-[0_0_50px_rgba(168,85,247,0.2)]">
+                            <i data-lucide="sparkles" class="w-32 h-32 text-purple-400 icon-float"></i>
+                        </div>
+                        <!-- Orbital dots -->
+                        <div class="absolute w-full h-full animate-spin-slow">
+                            <div class="absolute top-0 left-1/2 w-4 h-4 bg-blue-400 rounded-full blur-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+            <div>
+                <h2 class="text-5xl font-extrabold mb-4">Other Projects</h2>
+                <p class="text-gray-400 text-lg">Specialized tools and AI implementations.</p>
+            </div>
+            <div class="hidden md:block h-px bg-gray-800 flex-grow mx-12 mb-6"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10">
+            <!-- Project 2: Brisk -->
+            <div onclick="window.open('https://github.com/Sripadh-Sujith/Brisk', '_blank')" class="glass p-10 rounded-[2.5rem] group project-card" data-aos="fade-up">
+                <div>
+                    <div class="w-20 h-20 bg-purple-500/10 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-purple-500/20 transition-colors">
+                        <i data-lucide="wind" class="text-purple-400 w-10 h-10 icon-float"></i>
+                    </div>
+                    <h4 class="text-3xl font-bold mb-4">Brisk TTS</h4>
+                    <p class="text-gray-400 mb-6 font-light leading-relaxed text-lg">
+                        High-performance Text-to-Speech orchestration. Integrates gTTS with a reactive Streamlit frontend for seamless audio generation.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+                    <div class="flex gap-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest bg-purple-500/10 text-purple-400 px-4 py-1.5 rounded-full">gTTS</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest bg-white/10 px-4 py-1.5 rounded-full">Streamlit</span>
+                    </div>
+                    <i data-lucide="arrow-up-right" class="text-gray-600 group-hover:text-white transition-colors"></i>
+                </div>
+            </div>
+
+            <!-- Project 3: Realtime Emotion Detector -->
+            <div onclick="window.open('https://github.com/Sripadh-Sujith/Realtime_Emotion_Detector', '_blank')" class="glass p-10 rounded-[2.5rem] group project-card" data-aos="fade-up" data-aos-delay="100">
+                <div>
+                    <div class="w-20 h-20 bg-pink-500/10 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-pink-500/20 transition-colors">
+                        <i data-lucide="smile" class="text-pink-400 w-10 h-10 icon-float"></i>
+                    </div>
+                    <h4 class="text-3xl font-bold mb-4">Emotion Vision</h4>
+                    <p class="text-gray-400 mb-6 font-light leading-relaxed text-lg">
+                        Real-time facial expression analysis. Uses OpenCV pipelines and optimized Python logic to classify human emotions through live video feeds.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+                    <div class="flex gap-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest bg-pink-500/10 text-pink-400 px-4 py-1.5 rounded-full">OpenCV</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest bg-white/10 px-4 py-1.5 rounded-full">Vision</span>
+                    </div>
+                    <i data-lucide="arrow-up-right" class="text-gray-600 group-hover:text-white transition-colors"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="py-32 px-6 border-t border-gray-900 text-center relative overflow-hidden">
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-96 bg-blue-600/10 blur-[150px] rounded-full -z-10"></div>
+        <h2 class="text-4xl font-bold mb-12">Connect With Me</h2>
+        <a href="https://github.com/Sripadh-Sujith" target="_blank" class="text-3xl md:text-7xl font-black gradient-text hover:opacity-80 transition-opacity break-all block mb-16 tracking-tighter">
+            @Sripadh-Sujith
+        </a>
+        <div class="flex flex-wrap justify-center gap-6">
+            <a href="https://github.com/Sripadh-Sujith" target="_blank" class="glass px-8 py-4 rounded-xl flex items-center gap-3 hover:border-blue-500 transition font-bold btn-3d shadow-none" style="box-shadow: 0 4px 0 #1e293b;">
+                <i data-lucide="github"></i> GitHub
+            </a>
+            <a href="https://discord.com/users/sripadh2009" class="glass px-8 py-4 rounded-xl flex items-center gap-3 hover:border-blue-500 transition font-bold btn-3d shadow-none" style="box-shadow: 0 4px 0 #1e293b;">
+                <i data-lucide="linkedin"></i> Discord
+            </a>
+        </div>
+        <p class="mt-24 text-sm text-gray-600 font-mono tracking-widest uppercase">For any enquiries sripadhsujith2009@gmail.com</p>
+    </footer>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        lucide.createIcons();
+        AOS.init({ duration: 1000, once: true });
+
+        // --- 3D BACKGROUND ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        // Starfield
+        const starGeometry = new THREE.BufferGeometry();
+        const starMaterial = new THREE.PointsMaterial({ color: 0x4f46e5, size: 0.7, transparent: true, opacity: 0.4 });
+        const starVertices = [];
+        for (let i = 0; i < 4000; i++) {
+            starVertices.push((Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000);
+        }
+        starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        scene.add(stars);
+
+        // Python Geometry (Floating Python-colored Octahedrons)
+        const pyGroup = new THREE.Group();
+        const colors = [0x3776ab, 0xffd343]; 
+        const pyObjects = [];
+
+        for(let i = 0; i < 20; i++) {
+            const geom = new THREE.OctahedronGeometry(Math.random() * 8 + 4, 0);
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const mat = new THREE.MeshPhongMaterial({ color, wireframe: true, transparent: true, opacity: 0.2 });
+            const mesh = new THREE.Mesh(geom, mat);
+            
+            mesh.position.set((Math.random()-0.5)*1000, (Math.random()-0.5)*1000, (Math.random()-0.5)*1000);
+            mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, 0);
+            
+            const speed = (Math.random() - 0.5) * 0.01;
+            pyObjects.push({ mesh, speed });
+            pyGroup.add(mesh);
+        }
+        scene.add(pyGroup);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+        const light = new THREE.PointLight(0x3b82f6, 1.5);
+        light.position.set(500, 500, 500);
+        scene.add(light);
+
+        camera.position.z = 600;
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - window.innerWidth / 2) / 400;
+            mouseY = (e.clientY - window.innerHeight / 2) / 400;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            stars.rotation.y += 0.0002;
+            pyGroup.rotation.x += 0.0003;
+            pyGroup.rotation.y += 0.0003;
+            
+            pyObjects.forEach(o => {
+                o.mesh.rotation.y += o.speed;
+                o.mesh.rotation.z += o.speed;
+            });
+
+            camera.position.x += (mouseX * 100 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 100 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        window.onload = animate;
+    </script>
+    <style>
+        .animate-spin-slow { animation: spin 10s linear infinite; }
+    </style>
+</body>
+</html>
