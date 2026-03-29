@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sripadh Sujith | AI/ML Hobbyist Portfolio</title>
+    <title>Sripadh Sujith | AI/ML Engineer Portfolio</title>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -19,6 +19,7 @@
             background-color: #020617;
             color: #f9fafb;
             overflow-x: hidden;
+            width: 100%;
         }
 
         #canvas-container {
@@ -38,11 +39,13 @@
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .glass:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(59, 130, 246, 0.5);
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.1);
+        @media (min-width: 768px) {
+            .glass:hover {
+                background: rgba(255, 255, 255, 0.05);
+                border-color: rgba(59, 130, 246, 0.5);
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.1);
+            }
         }
 
         .gradient-text {
@@ -82,8 +85,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 60vw;
-            height: 60vw;
+            width: 80vw;
+            height: 80vw;
             background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(0,0,0,0) 70%);
             z-index: -1;
             pointer-events: none;
@@ -94,7 +97,13 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 420px;
+            min-height: auto;
+        }
+
+        @media (min-width: 768px) {
+            .project-card {
+                min-height: 420px;
+            }
         }
 
         /* Animation for icons */
@@ -117,6 +126,16 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
+
+        #copy-toast {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #copy-toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="custom-scrollbar">
@@ -125,111 +144,105 @@
     <div id="canvas-container"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass bg-opacity-20 border-none shadow-2xl">
+    <nav class="fixed top-0 w-full z-50 px-4 md:px-6 py-4 flex justify-between items-center glass bg-opacity-20 border-none shadow-2xl">
         <div class="text-xl font-bold tracking-tighter">Sripadh Sujith</div>
-        <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+        <div class="hidden lg:flex space-x-8 text-sm font-medium uppercase tracking-widest">
             <a href="#home" class="hover:text-blue-400 transition-colors">Home</a>
             <a href="#about" class="hover:text-blue-400 transition-colors">About</a>
-            <a href="#celestia-spotlight" class="hover:text-blue-400 transition-colors">Celestia</a>
+            <a href="#celestia-spotlight" class="hover:text-blue-400 transition-colors">Latest</a>
             <a href="#projects" class="hover:text-blue-400 transition-colors">Projects</a>
             <a href="#contact" class="hover:text-blue-400 transition-colors">Contact</a>
         </div>
-        <a href="https://github.com/Sripadh-Sujith" target="_blank" class="bg-blue-600 btn-3d text-white px-6 py-2 rounded-full text-sm font-bold flex items-center gap-2">
-            <i data-lucide="github" class="w-4 h-4"></i> GitHub
+        <a href="https://github.com/Sripadh-Sujith" target="_blank" class="bg-blue-600 btn-3d text-white px-4 md:px-6 py-2 rounded-full text-xs md:text-sm font-bold flex items-center gap-2">
+            <i data-lucide="github" class="w-4 h-4"></i> <span class="hidden sm:inline">GitHub</span>
         </a>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex flex-col justify-center items-center px-6 text-center">
+    <section id="home" class="relative min-h-screen flex flex-col justify-center items-center px-6 text-center pt-20">
         <div class="hero-glow"></div>
-        <h2 data-aos="fade-down" class="text-blue-400 font-mono mb-4 text-lg tracking-widest uppercase">Hi, I'm Sripadh Sujith</h2>
-        <h1 data-aos="zoom-out" data-aos-delay="100" class="text-6xl md:text-9xl font-extrabold mb-6 leading-tight tracking-tight">
+        <h2 data-aos="fade-down" class="text-blue-400 font-mono mb-4 text-sm md:text-lg tracking-widest uppercase">Hi, I'm Sripadh Sujith</h2>
+        <h1 data-aos="zoom-out" data-aos-delay="100" class="text-5xl md:text-7xl lg:text-9xl font-extrabold mb-6 leading-tight tracking-tight">
             Architecting <br> <span class="gradient-text">Intelligence.</span>
         </h1>
-        <p data-aos="fade-up" data-aos-delay="200" class="max-w-2xl text-gray-400 text-lg md:text-xl mb-10 font-light">
+        <p data-aos="fade-up" data-aos-delay="200" class="max-w-2xl text-gray-400 text-base md:text-xl mb-10 font-light">
             Python Expert & AIML hobbyist crafting neural solutions for the next generation of computing.
         </p>
-        <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row gap-6">
-            <a href="#celestia-spotlight" class="px-10 py-4 bg-white text-black font-bold rounded-xl btn-3d shadow-none" style="box-shadow: 0 6px 0 #94a3b8;">Spotlight: Celestia</a>
-            <a href="#projects" class="px-10 py-4 glass rounded-xl font-bold hover:bg-white/10 transition-all">All Projects</a>
+        <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row gap-4 md:gap-6 w-full sm:w-auto">
+            <a href="#celestia-spotlight" class="px-8 py-4 bg-white text-black font-bold rounded-xl btn-3d shadow-none text-center" style="box-shadow: 0 6px 0 #94a3b8;">Spotlight</a>
+            <a href="#projects" class="px-8 py-4 glass rounded-xl font-bold hover:bg-white/10 transition-all text-center">All Projects</a>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
+    <section id="about" class="py-20 md:py-32 px-6 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div data-aos="fade-right">
-                <h3 class="text-4xl font-bold mb-6">Expertise in <span class="text-blue-500">Python & AI</span></h3>
-                <p class="text-gray-400 mb-8 text-lg leading-relaxed">
+                <h3 class="text-3xl md:text-4xl font-bold mb-6 text-center md:text-left">Expertise in <span class="text-blue-500">Python & AI</span></h3>
+                <p class="text-gray-400 mb-8 text-base md:text-lg leading-relaxed text-center md:text-left">
                     I build robust systems using modern Python frameworks. My focus lies in Deep Learning, Computer Vision, and Generative AI to solve real-world problems.
                 </p>
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="flex items-center space-x-3 text-gray-300">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                    <div class="flex items-center space-x-3 text-gray-300 glass p-3 rounded-xl border-none">
                         <div class="p-2 bg-blue-500/10 rounded-lg"><i data-lucide="brain" class="text-blue-500 w-5 h-5"></i></div>
                         <span>Neural Networks</span>
                     </div>
-                    <div class="flex items-center space-x-3 text-gray-300">
+                    <div class="flex items-center space-x-3 text-gray-300 glass p-3 rounded-xl border-none">
                         <div class="p-2 bg-purple-500/10 rounded-lg"><i data-lucide="camera" class="text-purple-500 w-5 h-5"></i></div>
-                        <span>OpenCV Vision</span>
+                        <span>AI Apps</span>
                     </div>
-                    <div class="flex items-center space-x-3 text-gray-300">
+                    <div class="flex items-center space-x-3 text-gray-300 glass p-3 rounded-xl border-none">
                         <div class="p-2 bg-pink-500/10 rounded-lg"><i data-lucide="mic" class="text-pink-500 w-5 h-5"></i></div>
                         <span>Speech Synthesis</span>
                     </div>
-                    <div class="flex items-center space-x-3 text-gray-300">
+                    <div class="flex items-center space-x-3 text-gray-300 glass p-3 rounded-xl border-none">
                         <div class="p-2 bg-green-500/10 rounded-lg"><i data-lucide="code-2" class="text-green-500 w-5 h-5"></i></div>
                         <span>Streamlit Apps</span>
                     </div>
                 </div>
             </div>
-            <div data-aos="fade-left" class="grid grid-cols-2 gap-6">
-                <div class="glass p-10 rounded-3xl text-center border-blue-500/20">
-                    <div class="text-5xl font-extrabold text-blue-500 mb-2">3+</div>
-                    <div class="text-xs uppercase tracking-widest text-gray-500 font-bold">Years Coding</div>
+            <div data-aos="fade-left" class="grid grid-cols-2 gap-4 md:gap-6">
+                <div class="glass p-6 md:p-10 rounded-3xl text-center border-blue-500/20">
+                    <div class="text-3xl md:text-5xl font-extrabold text-blue-500 mb-2">3+</div>
+                    <div class="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-bold">Years Coding</div>
                 </div>
-                <div class="glass p-10 rounded-3xl text-center mt-12 border-purple-500/20">
-                    <div class="text-5xl font-extrabold text-purple-500 mb-2">100%</div>
-                    <div class="text-xs uppercase tracking-widest text-gray-500 font-bold">Open Source</div>
+                <div class="glass p-6 md:p-10 rounded-3xl text-center mt-8 md:mt-12 border-purple-500/20">
+                    <div class="text-3xl md:text-5xl font-extrabold text-purple-500 mb-2">100%</div>
+                    <div class="text-[10px] md:text-xs uppercase tracking-widest text-gray-500 font-bold">Open Source</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SPECIALIZED SECTION: Celestia Spotlight -->
-    <section id="celestia-spotlight" class="py-32 px-6 relative">
+    <section id="celestia-spotlight" class="py-20 md:py-32 px-6 relative overflow-hidden">
         <div class="celestia-gradient absolute inset-0 -z-10"></div>
         <div class="max-w-7xl mx-auto">
-            <div class="glass p-12 md:p-20 rounded-[3rem] border-purple-500/30 overflow-hidden relative">
+            <div class="glass p-8 md:p-16 lg:p-20 rounded-[2rem] md:rounded-[3rem] border-purple-500/30 overflow-hidden relative">
                 <!-- Decorative Orbit -->
-                <div class="absolute -right-20 -top-20 w-96 h-96 border border-purple-500/10 rounded-full cosmic-rotate"></div>
-                <div class="absolute -right-40 -top-40 w-[30rem] h-[30rem] border border-blue-500/5 rounded-full cosmic-rotate" style="animation-direction: reverse;"></div>
-
-                <div class="grid lg:grid-cols-2 gap-16 items-center relative z-10">
+                <div class="absolute -right-20 -top-20 w-64 md:w-96 h-64 md:h-96 border border-purple-500/10 rounded-full cosmic-rotate hidden md:block"></div>
+                
+                <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-center relative z-10">
                     <div data-aos="fade-right">
                         <div class="flex items-center gap-4 mb-6">
-                            <span class="bg-purple-500/20 text-purple-400 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-tighter">Flagship Project</span>
-                            <div class="h-px w-12 bg-purple-500/30"></div>
+                            <span class="bg-purple-500/20 text-purple-400 text-[10px] md:text-xs font-bold px-4 py-2 rounded-full uppercase tracking-tighter">Flagship Project</span>
                         </div>
-                        <h2 class="text-5xl md:text-7xl font-black mb-8 leading-none">Celestia <br><span class="text-purple-400 text-4xl md:text-5xl">Horoscope Expert</span></h2>
-                        <p class="text-gray-300 text-xl mb-10 leading-relaxed font-light">
+                        <h2 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 md:mb-8 leading-tight">Celestia <br><span class="text-purple-400 text-2xl md:text-5xl">Horoscope Expert</span></h2>
+                        <p class="text-gray-300 text-base md:text-xl mb-10 leading-relaxed font-light">
                             Beyond standard astrology—Celestia utilizes advanced Large Language Models to interpret cosmic data. It provides nuanced, context-aware horoscope readings through a sophisticated conversational engine.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-6">
-                            <button onclick="window.open('https://huggingface.co/spaces/Sripadh2009/Celestia/', '_blank')" class="bg-purple-600 btn-3d px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-3">
+                            <button onclick="window.open('https://huggingface.co/spaces/Sripadh2009/Celestia', '_blank')" class="bg-purple-600 btn-3d px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-3">
                                 <i data-lucide="external-link" class="w-5 h-5"></i> View Source
                             </button>
-                            <div class="flex items-center gap-4 px-4">
-                                <span class="text-sm font-mono text-purple-300/60">Status: v2.4 Live</span>
+                            <div class="flex items-center justify-center sm:justify-start gap-4 px-4">
+                                <span class="text-xs font-mono text-purple-300/60">Status: v2.4 Live</span>
                             </div>
                         </div>
                     </div>
-                    <div class="relative flex justify-center items-center" data-aos="zoom-in">
-                        <div class="w-72 h-72 md:w-96 md:h-96 glass rounded-full flex items-center justify-center border-purple-500/40 shadow-[0_0_50px_rgba(168,85,247,0.2)]">
-                            <i data-lucide="sparkles" class="w-32 h-32 text-purple-400 icon-float"></i>
-                        </div>
-                        <!-- Orbital dots -->
-                        <div class="absolute w-full h-full animate-spin-slow">
-                            <div class="absolute top-0 left-1/2 w-4 h-4 bg-blue-400 rounded-full blur-sm"></div>
+                    <div class="relative flex justify-center items-center order-first lg:order-last mb-8 lg:mb-0" data-aos="zoom-in">
+                        <div class="w-48 h-48 md:w-72 md:h-72 lg:w-96 lg:h-96 glass rounded-full flex items-center justify-center border-purple-500/40 shadow-[0_0_50px_rgba(168,85,247,0.2)]">
+                            <i data-lucide="sparkles" class="w-20 h-20 md:w-32 md:h-32 text-purple-400 icon-float"></i>
                         </div>
                     </div>
                 </div>
@@ -238,51 +251,51 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+    <section id="projects" class="py-20 md:py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 md:mb-20 text-center md:text-left">
             <div>
-                <h2 class="text-5xl font-extrabold mb-4">Other Projects</h2>
-                <p class="text-gray-400 text-lg">Specialized tools and AI implementations.</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Other Projects</h2>
+                <p class="text-gray-400 text-base md:text-lg">Specialized tools and AI implementations.</p>
             </div>
             <div class="hidden md:block h-px bg-gray-800 flex-grow mx-12 mb-6"></div>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             <!-- Project 2: Brisk -->
-            <div onclick="window.open('https://github.com/Sripadh-Sujith/Brisk', '_blank')" class="glass p-10 rounded-[2.5rem] group project-card" data-aos="fade-up">
+            <div onclick="window.open('https://github.com/Sripadh-Sujith/Brisk', '_blank')" class="glass p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] group project-card" data-aos="fade-up">
                 <div>
-                    <div class="w-20 h-20 bg-purple-500/10 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-purple-500/20 transition-colors">
-                        <i data-lucide="wind" class="text-purple-400 w-10 h-10 icon-float"></i>
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-purple-500/10 rounded-2xl md:rounded-3xl flex items-center justify-center mb-8 group-hover:bg-purple-500/20 transition-colors">
+                        <i data-lucide="wind" class="text-purple-400 w-8 h-8 md:w-10 md:h-10 icon-float"></i>
                     </div>
-                    <h4 class="text-3xl font-bold mb-4">Brisk TTS</h4>
-                    <p class="text-gray-400 mb-6 font-light leading-relaxed text-lg">
+                    <h4 class="text-2xl md:text-3xl font-bold mb-4">Brisk TTS</h4>
+                    <p class="text-gray-400 mb-6 font-light leading-relaxed text-base md:text-lg">
                         High-performance Text-to-Speech orchestration. Integrates gTTS with a reactive Streamlit frontend for seamless audio generation.
                     </p>
                 </div>
                 <div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
-                    <div class="flex gap-2">
-                        <span class="text-[10px] font-bold uppercase tracking-widest bg-purple-500/10 text-purple-400 px-4 py-1.5 rounded-full">gTTS</span>
-                        <span class="text-[10px] font-bold uppercase tracking-widest bg-white/10 px-4 py-1.5 rounded-full">Streamlit</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full">gTTS</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full">Streamlit</span>
                     </div>
                     <i data-lucide="arrow-up-right" class="text-gray-600 group-hover:text-white transition-colors"></i>
                 </div>
             </div>
 
             <!-- Project 3: Realtime Emotion Detector -->
-            <div onclick="window.open('https://github.com/Sripadh-Sujith/Realtime_Emotion_Detector', '_blank')" class="glass p-10 rounded-[2.5rem] group project-card" data-aos="fade-up" data-aos-delay="100">
+            <div onclick="window.open('https://github.com/Sripadh-Sujith/Realtime_emotion_detector', '_blank')" class="glass p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] group project-card" data-aos="fade-up" data-aos-delay="100">
                 <div>
-                    <div class="w-20 h-20 bg-pink-500/10 rounded-3xl flex items-center justify-center mb-8 group-hover:bg-pink-500/20 transition-colors">
-                        <i data-lucide="smile" class="text-pink-400 w-10 h-10 icon-float"></i>
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-pink-500/10 rounded-2xl md:rounded-3xl flex items-center justify-center mb-8 group-hover:bg-pink-500/20 transition-colors">
+                        <i data-lucide="smile" class="text-pink-400 w-8 h-8 md:w-10 md:h-10 icon-float"></i>
                     </div>
-                    <h4 class="text-3xl font-bold mb-4">Emotion Vision</h4>
-                    <p class="text-gray-400 mb-6 font-light leading-relaxed text-lg">
+                    <h4 class="text-2xl md:text-3xl font-bold mb-4">Emotion Vision</h4>
+                    <p class="text-gray-400 mb-6 font-light leading-relaxed text-base md:text-lg">
                         Real-time facial expression analysis. Uses OpenCV pipelines and optimized Python logic to classify human emotions through live video feeds.
                     </p>
                 </div>
                 <div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
-                    <div class="flex gap-2">
-                        <span class="text-[10px] font-bold uppercase tracking-widest bg-pink-500/10 text-pink-400 px-4 py-1.5 rounded-full">OpenCV</span>
-                        <span class="text-[10px] font-bold uppercase tracking-widest bg-white/10 px-4 py-1.5 rounded-full">Vision</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest bg-pink-500/10 text-pink-400 px-3 py-1 rounded-full">OpenCV</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full">Vision</span>
                     </div>
                     <i data-lucide="arrow-up-right" class="text-gray-600 group-hover:text-white transition-colors"></i>
                 </div>
@@ -291,21 +304,43 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="py-32 px-6 border-t border-gray-900 text-center relative overflow-hidden">
+    <footer id="contact" class="py-20 md:py-32 px-6 border-t border-gray-900 text-center relative overflow-hidden">
         <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-96 bg-blue-600/10 blur-[150px] rounded-full -z-10"></div>
-        <h2 class="text-4xl font-bold mb-12">Connect With Me</h2>
-        <a href="https://github.com/Sripadh-Sujith" target="_blank" class="text-3xl md:text-7xl font-black gradient-text hover:opacity-80 transition-opacity break-all block mb-16 tracking-tighter">
-            @Sripadh-Sujith
-        </a>
-        <div class="flex flex-wrap justify-center gap-6">
-            <a href="https://github.com/Sripadh-Sujith" target="_blank" class="glass px-8 py-4 rounded-xl flex items-center gap-3 hover:border-blue-500 transition font-bold btn-3d shadow-none" style="box-shadow: 0 4px 0 #1e293b;">
-                <i data-lucide="github"></i> GitHub
+        
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 md:mb-12">Let's Work Together</h2>
+            
+            <!-- Email Display with Copy Functionality -->
+            <div class="glass p-6 md:p-10 rounded-3xl mb-12 group transition-all hover:border-blue-500/50">
+                <p class="text-xs md:text-sm text-gray-500 uppercase tracking-widest font-bold mb-4">Direct Contact</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+                    <span class="text-xl md:text-4xl font-bold text-white break-all tracking-tight">sripadhsujith2009@gmail.com</span>
+                    <button onclick="copyEmail()" class="bg-white/10 hover:bg-white/20 p-4 rounded-2xl transition-all btn-3d shadow-none" style="box-shadow: 0 4px 0 #1e293b;">
+                        <i data-lucide="copy" id="copy-icon" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+
+            <a href="https://github.com/Sripadh-Sujith" target="_blank" class="text-2xl md:text-6xl font-black gradient-text hover:opacity-80 transition-opacity break-all block mb-12 tracking-tighter">
+                @Sripadh-Sujith
             </a>
-            <a href="https://discord.com/users/sripadh2009" class="glass px-8 py-4 rounded-xl flex items-center gap-3 hover:border-blue-500 transition font-bold btn-3d shadow-none" style="box-shadow: 0 4px 0 #1e293b;">
-                <i data-lucide="linkedin"></i> Discord
-            </a>
+
+            <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                <a href="https://github.com/Sripadh-Sujith" target="_blank" class="glass px-6 md:px-8 py-3 md:py-4 rounded-xl flex items-center gap-3 hover:border-blue-500 transition font-bold btn-3d shadow-none text-sm md:text-base" style="box-shadow: 0 4px 0 #1e293b;">
+                    <i data-lucide="github" class="w-5 h-5"></i> GitHub
+                </a>
+                <a href="https://dev.to/sripadh_sujith_1487e8db18" class="glass px-6 md:px-8 py-3 md:py-4 rounded-xl flex items-center gap-3 hover:border-blue-500 transition font-bold btn-3d shadow-none text-sm md:text-base" style="box-shadow: 0 4px 0 #1e293b;">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i> DEV.to
+                </a>
+            </div>
+            
+            <p class="mt-20 md:mt-24 text-[10px] md:text-xs text-gray-600 font-mono tracking-widest uppercase">All rights reserved • 2026</p>
         </div>
-        <p class="mt-24 text-sm text-gray-600 font-mono tracking-widest uppercase">For any enquiries sripadhsujith2009@gmail.com</p>
+
+        <!-- Toast Notification -->
+        <div id="copy-toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 glass px-6 py-3 rounded-full text-sm font-bold border-green-500/50 text-green-400 flex items-center gap-2 z-[100]">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Email copied to clipboard!
+        </div>
     </footer>
 
     <!-- Three.js Library -->
@@ -317,74 +352,159 @@
         lucide.createIcons();
         AOS.init({ duration: 1000, once: true });
 
-        // --- 3D BACKGROUND ---
+        // Copy Email Function
+        function copyEmail() {
+            const email = "sripadhsujith2009@gmail.com";
+            const el = document.createElement('textarea');
+            el.value = email;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            const toast = document.getElementById('copy-toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        // --- ENHANCED 3D BACKGROUND ---
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2500);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
 
-        // Starfield
+        // 1. Dynamic Particle Starfield
         const starGeometry = new THREE.BufferGeometry();
-        const starMaterial = new THREE.PointsMaterial({ color: 0x4f46e5, size: 0.7, transparent: true, opacity: 0.4 });
-        const starVertices = [];
-        for (let i = 0; i < 4000; i++) {
-            starVertices.push((Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000, (Math.random() - 0.5) * 2000);
+        const starCount = 6000;
+        const starVertices = new Float32Array(starCount * 3);
+        const starSizes = new Float32Array(starCount);
+
+        for (let i = 0; i < starCount * 3; i++) {
+            starVertices[i] = (Math.random() - 0.5) * 2000;
         }
-        starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+        for (let i = 0; i < starCount; i++) {
+            starSizes[i] = Math.random() * 2;
+        }
+
+        starGeometry.setAttribute('position', new THREE.BufferAttribute(starVertices, 3));
+        starGeometry.setAttribute('size', new THREE.BufferAttribute(starSizes, 1));
+
+        const starMaterial = new THREE.PointsMaterial({ 
+            color: 0x6366f1, 
+            size: 1.2, 
+            transparent: true, 
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending 
+        });
         const stars = new THREE.Points(starGeometry, starMaterial);
         scene.add(stars);
 
-        // Python Geometry (Floating Python-colored Octahedrons)
-        const pyGroup = new THREE.Group();
-        const colors = [0x3776ab, 0xffd343]; 
-        const pyObjects = [];
+        // 2. Geometric "Neural" Helix Structure
+        const helixGroup = new THREE.Group();
+        const nodeCount = 40;
+        const nodes = [];
+        const helixRadius = 120;
+        const helixHeight = 800;
 
-        for(let i = 0; i < 20; i++) {
-            const geom = new THREE.OctahedronGeometry(Math.random() * 8 + 4, 0);
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            const mat = new THREE.MeshPhongMaterial({ color, wireframe: true, transparent: true, opacity: 0.2 });
-            const mesh = new THREE.Mesh(geom, mat);
+        for (let i = 0; i < nodeCount; i++) {
+            const t = (i / nodeCount) * Math.PI * 4;
+            const y = (i / nodeCount) * helixHeight - helixHeight / 2;
             
-            mesh.position.set((Math.random()-0.5)*1000, (Math.random()-0.5)*1000, (Math.random()-0.5)*1000);
-            mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, 0);
+            // Strand 1
+            const node1 = new THREE.Mesh(
+                new THREE.IcosahedronGeometry(3, 0),
+                new THREE.MeshPhongMaterial({ color: 0x3b82f6, emissive: 0x1e3a8a })
+            );
+            node1.position.set(Math.cos(t) * helixRadius, y, Math.sin(t) * helixRadius);
             
-            const speed = (Math.random() - 0.5) * 0.01;
-            pyObjects.push({ mesh, speed });
-            pyGroup.add(mesh);
+            // Strand 2
+            const node2 = new THREE.Mesh(
+                new THREE.IcosahedronGeometry(3, 0),
+                new THREE.MeshPhongMaterial({ color: 0xffd343, emissive: 0x78350f })
+            );
+            node2.position.set(Math.cos(t + Math.PI) * helixRadius, y, Math.sin(t + Math.PI) * helixRadius);
+            
+            helixGroup.add(node1, node2);
+            nodes.push({ n1: node1, n2: node2, t, baseT: t });
+
+            // Connecting line
+            const lineGeom = new THREE.BufferGeometry().setFromPoints([node1.position, node2.position]);
+            const lineMat = new THREE.LineBasicMaterial({ color: 0x475569, transparent: true, opacity: 0.2 });
+            const line = new THREE.Line(lineGeom, lineMat);
+            helixGroup.add(line);
         }
-        scene.add(pyGroup);
+        scene.add(helixGroup);
 
+        // 3. Central Pulsing "Core"
+        const coreGeom = new THREE.TorusKnotGeometry(60, 20, 100, 16);
+        const coreMat = new THREE.MeshPhongMaterial({ 
+            color: 0x4f46e5, 
+            wireframe: true, 
+            transparent: true, 
+            opacity: 0.15 
+        });
+        const core = new THREE.Mesh(coreGeom, coreMat);
+        scene.add(core);
+
+        // Lights
         scene.add(new THREE.AmbientLight(0xffffff, 0.4));
-        const light = new THREE.PointLight(0x3b82f6, 1.5);
-        light.position.set(500, 500, 500);
-        scene.add(light);
+        const pLight1 = new THREE.PointLight(0x6366f1, 2, 1000);
+        pLight1.position.set(200, 200, 200);
+        scene.add(pLight1);
 
-        camera.position.z = 600;
+        const pLight2 = new THREE.PointLight(0xf59e0b, 1, 1000);
+        pLight2.position.set(-200, -200, 200);
+        scene.add(pLight2);
+
+        camera.position.z = 800;
 
         let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
         document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX - window.innerWidth / 2) / 400;
-            mouseY = (e.clientY - window.innerHeight / 2) / 400;
+            targetX = (e.clientX - window.innerWidth / 2) / 200;
+            targetY = (e.clientY - window.innerHeight / 2) / 200;
         });
 
         function animate() {
             requestAnimationFrame(animate);
-            stars.rotation.y += 0.0002;
-            pyGroup.rotation.x += 0.0003;
-            pyGroup.rotation.y += 0.0003;
+            const time = Date.now() * 0.001;
+
+            // Smooth mouse follow
+            mouseX += (targetX - mouseX) * 0.05;
+            mouseY += (targetY - mouseY) * 0.05;
+
+            // Rotate main elements
+            stars.rotation.y += 0.0005;
+            stars.rotation.x += 0.0001;
+
+            helixGroup.rotation.y += 0.005;
+            helixGroup.rotation.z = mouseX * 0.2;
             
-            pyObjects.forEach(o => {
-                o.mesh.rotation.y += o.speed;
-                o.mesh.rotation.z += o.speed;
+            core.rotation.x += 0.01;
+            core.rotation.y += 0.01;
+            core.scale.setScalar(1 + Math.sin(time * 2) * 0.1);
+
+            // Update Helix Nodes (pulsing strands)
+            nodes.forEach((node, i) => {
+                const wave = Math.sin(time * 2 + i * 0.2) * 20;
+                const dynamicRadius = helixRadius + wave;
+                node.t += 0.01;
+                node.n1.position.x = Math.cos(node.t) * dynamicRadius;
+                node.n1.position.z = Math.sin(node.t) * dynamicRadius;
+                node.n2.position.x = Math.cos(node.t + Math.PI) * dynamicRadius;
+                node.n2.position.z = Math.sin(node.t + Math.PI) * dynamicRadius;
             });
 
-            camera.position.x += (mouseX * 100 - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY * 100 - camera.position.y) * 0.05;
+            // Camera reacts to mouse
+            camera.position.x += (mouseX * 150 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 150 - camera.position.y) * 0.05;
             camera.lookAt(scene.position);
+
             renderer.render(scene, camera);
         }
 
@@ -396,8 +516,5 @@
 
         window.onload = animate;
     </script>
-    <style>
-        .animate-spin-slow { animation: spin 10s linear infinite; }
-    </style>
 </body>
 </html>
